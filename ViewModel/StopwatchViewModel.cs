@@ -16,7 +16,7 @@ namespace HF_16_MVVM_Stopwatch.ViewModel
         public bool Running { get => _stopwatchModel.Running; }
         public StopwatchViewModel()
         {
-            _timer.Interval = TimeSpan.FromMilliseconds(50);
+            _timer.Interval = TimeSpan.FromMilliseconds(5);
             _timer.Tick += TimerTick;
             _timer.Start();
 

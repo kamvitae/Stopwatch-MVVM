@@ -29,7 +29,7 @@
                 <Run>:</Run>
                 <Run Text="{Binding LapSeconds, Mode=OneWay}"/>
             </TextBlock>
-            <StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Button Click="StartButton_Click" Margin="0,0,5,0">Start</Button>
                 <Button Click="StopButton_Click" Margin="0,0,5,0">Stop</Button>
                 <Button Click="ResetButton_Click" Margin="0,0,5,0">Reset</Button>

@@ -22,8 +22,8 @@ namespace HF_16_MVVM_Stopwatch.View
         public StopwatchViewModel viewModel;
         public BasicStopwatch()
         {
-            viewModel = FindResource("viewModel") as StopwatchViewModel;
             InitializeComponent();
+            viewModel = FindResource("viewModel") as StopwatchViewModel;
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
