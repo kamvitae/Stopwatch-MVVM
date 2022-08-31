@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:HF_16_MVVM_Stopwatch"
         xmlns:view="clr-namespace:HF_16_MVVM_Stopwatch.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="150" Width="250">
+        Title="TwoStopwatchesw" Height="450" Width="600" ResizeMode="NoResize">
     <Grid>
-        <view:BasicStopwatch Margin="5"/>
+        <StackPanel>
+            <view:BasicStopwatch Margin="5"/>
+            <view:AnalogStopwatch Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>
