@@ -9,32 +9,49 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <viewmodel:StopwatchViewModel x:Key="viewModel"/>
+        <viewmodel:TimeNumberFormatConverter x:Key="timeNumberFormatConverter"/>
+        <viewmodel:BooleanVisibilityConverter x:Key="visibilityConverter"/>
+        <viewmodel:BooleanNotConverter x:Key="BooleanNotConverter"/>
     </UserControl.Resources>
-    
+
     <Grid DataContext="{StaticResource ResourceKey=viewModel}">
         <StackPanel>
             <TextBlock>
                 <Run>Elapsed Time:</Run>
-                <Run Text="{Binding Hours, Mode=OneWay}"/>
+                <Run Text="{Binding Hours, Mode=OneWay,
+                            Converter={StaticResource timeNumberFormatConverter}}"/>
                 <Run>:</Run>
-                <Run Text="{Binding Minutes, Mode=OneWay}"/>
+                <Run Text="{Binding Minutes, Mode=OneWay,
+                            Converter={StaticResource timeNumberFormatConverter},
+                            ConverterParameter=d2}"/>
                 <Run>:</Run>
-                <Run Text="{Binding Seconds, Mode=OneWay}"/>
+                <Run Text="{Binding Seconds, Mode=OneWay,
+                            Converter={StaticResource timeNumberFormatConverter}}"/>
             </TextBlock>
             <TextBlock>
                 <Run>Lap Time:</Run>
-                <Run Text="{Binding LapHours, Mode=OneWay}"/>
+                <Run Text="{Binding LapHours, Mode=OneWay,
+                            Converter={StaticResource timeNumberFormatConverter}}"/>
                 <Run>:</Run>
-                <Run Text="{Binding LapMinutes, Mode=OneWay}"/>
+                <Run Text="{Binding LapMinutes, Mode=OneWay,
+                            Converter={StaticResource timeNumberFormatConverter},
+                            ConverterParameter=d2}"/>
                 <Run>:</Run>
-                <Run Text="{Binding LapSeconds, Mode=OneWay}"/>
+                <Run Text="{Binding LapSeconds, Mode=OneWay,
+                            Converter={StaticResource timeNumberFormatConverter}}"/>
             </TextBlock>
             <StackPanel Orientation="Horizontal">
-                <Button Click="StartButton_Click" Margin="0,0,5,0">Start</Button>
-                <Button Click="StopButton_Click" Margin="0,0,5,0">Stop</Button>
+                <Button IsEnabled="{Binding Running, Converter={StaticResource BooleanNotConverter}}"  
+                        AutomationProperties.Name="Start"
+                        Click="StartButton_Click" Margin="0,0,5,0">Start</Button>
+                <Button IsEnabled="{Binding Running}" 
+                        Click="StopButton_Click" Margin="0,0,5,0">Stop</Button>
                 <Button Click="ResetButton_Click" Margin="0,0,5,0">Reset</Button>
-                <Button Click="LapButton_Click">Lap</Button>
+                <Button IsEnabled="{Binding Running}" 
+                        Click="LapButton_Click">Lap</Button>
             </StackPanel>
+            <TextBlock Text="Stopwatch is running"
+                       Visibility="{Binding Running, Converter={StaticResource visibilityConverter}}"/>
         </StackPanel>
     </Grid>
 </UserControl>

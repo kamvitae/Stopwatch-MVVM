@@ -16,7 +16,7 @@ namespace HF_16_MVVM_Stopwatch.ViewModel
         public bool Running { get => _stopwatchModel.Running; }
         public StopwatchViewModel()
         {
-            _timer.Interval = TimeSpan.FromMilliseconds(5);
+            _timer.Interval = TimeSpan.FromMilliseconds(100);
             _timer.Tick += TimerTick;
             _timer.Start();
 
@@ -48,8 +48,15 @@ namespace HF_16_MVVM_Stopwatch.ViewModel
         int _lastHours;
         int _lastMinutes;
         decimal _lastSeconds;
+        bool _lastRunning;
         private void TimerTick(object sender, EventArgs e)
         {
+            if (_lastRunning!= Running)
+            {
+                _lastRunning = Running;
+
+                OnPropertyChanged("Running");
+            }
             if (_lastHours != Hours)
             {
                 _lastHours = Hours;
